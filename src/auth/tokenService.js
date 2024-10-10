@@ -64,3 +64,27 @@ export async function getToken() {
     return null;
   }
 };
+
+
+/**
+ * Removes the stored access token.
+ * 
+ * @async
+ * @function removeToken
+ * @description This function deletes the access token from SecureStore. 
+ * It logs success if the token is removed or an error if the removal fails.
+ */
+
+export async function removeToken() {
+  try {
+     // Delete the token from SecureStore.
+    await SecureStore.deleteItemAsync(TOKEN_KEY);
+     // Log success message 
+     log.info('Token deleted successfully:');
+   
+  } catch (error) {
+    // Log any errors that occur during token removal.
+    log.error('Error while deleting token:', error.message, error.stack);
+    return null;
+  }
+};

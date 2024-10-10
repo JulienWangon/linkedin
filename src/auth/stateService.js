@@ -29,7 +29,7 @@ export async function storeState(state) {
     // Log any errors that occur during storage
     log.debug('Error storing state:', error.message, error.stack);
   }
-}
+};
 
 
 /**
@@ -47,7 +47,7 @@ export async function getStoredState() {
     // Retrieve the stored state from SecureStore.
     const storedState = await SecureStore.getItemAsync(STATE_KEY);
     if (storedState) {
-      // Log success message at the info level
+      // Log success message 
       log.info('State retrieved successfully:', storedState);
 
       return storedState;
@@ -56,11 +56,34 @@ export async function getStoredState() {
       // If no state is found, log a warning
       log.warn('No state found in SecureStore.');
       return null;
-
     }
+
   } catch (error) {
     // Log error if something goes wrong during retrieval
     log.error('Error while retrieving state:', error.message, error.stack);
     return null;
   }
-}
+};
+
+
+/**
+ * Removes the stored authentication state.
+ * 
+ * @async
+ * @function removeStoredState
+ * @description This function deletes the authentication state from SecureStore. 
+ * It logs the result or an error if one occurs during the deletion process.
+ */
+
+export async function removeStoredState() {
+  try {
+    // Delete the stored state from SecureStore.
+    await SecureStore.deleteItemAsync(STATE_KEY);
+    // Log success message 
+    log.info('State deleted successfully:');
+
+  } catch (error) {
+    // Log any errors that occur during deletion.
+    log.error('Error while deleting state:', error.message, error.stack);
+  }
+};

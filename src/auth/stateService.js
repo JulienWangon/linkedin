@@ -22,7 +22,7 @@ export async function storeState(state) {
     await SecureStore.setItemAsync(STATE_KEY, state);
 
     // Log success message
-    log.info('State stored successfully:', state);
+    log.info('State stored successfully:');
 
   } catch (error) {
 
@@ -85,5 +85,6 @@ export async function removeStoredState() {
   } catch (error) {
     // Log any errors that occur during deletion.
     log.error('Error while deleting state:', error.message, error.stack);
+    return null;
   }
 };

@@ -30,3 +30,37 @@ export async function storeState(state) {
     log.debug('Error storing state:', error.message, error.stack);
   }
 }
+
+
+/**
+ * Retrieves the stored authentication state.
+ * 
+ * @async
+ * @function getStoredState
+ * @returns {Promise<string|null>} - Returns the stored state if found, or null if not found or an error occurs.
+ * @description This function fetches the authentication state from SecureStore. It logs the retrieved state,
+ * or a warning if no state is found. In case of errors, it logs the error and returns null.
+ */
+
+export async function getStoredState() {
+  try {
+    // Retrieve the stored state from SecureStore.
+    const storedState = await SecureStore.getItemAsync(STATE_KEY);
+    if (storedState) {
+      // Log success message at the info level
+      log.info('State retrieved successfully:', storedState);
+
+      return storedState;
+
+    } else {
+      // If no state is found, log a warning
+      log.warn('No state found in SecureStore.');
+      return null;
+
+    }
+  } catch (error) {
+    // Log error if something goes wrong during retrieval
+    log.error('Error while retrieving state:', error.message, error.stack);
+    return null;
+  }
+}

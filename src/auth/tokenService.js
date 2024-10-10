@@ -88,3 +88,35 @@ export async function removeToken() {
     return null;
   }
 };
+
+
+/**
+ * Checks if the token exists and redirects accordingly.
+ * 
+ * @async
+ * @function checkTokenAndRedirect
+ * @param {Object} navigation - React Navigation object for handling navigation.
+ * @returns {Promise<boolean>} - Returns true if the token is found and redirects to the Home page, otherwise false.
+ * @description This function checks for the existence of the access token. If the token is found,
+ * it redirects the user to the home page. Logs any errors or warnings and returns false if no token is found.
+ */
+
+export async function checkTokenAndRedirect(navigation) {
+  try {
+    // Check if the token exists by retrieving it from SecureStore.
+    const storedToken = await getToken();
+
+    if (storedToken) {
+      // If the token is found, navigate to the Home screen.
+      navigation.navigate('Home');
+      return true;
+    } 
+
+      return null;
+    
+  } catch (error) {
+    // Log any errors that occur during the token check.
+    log.error('Error while verifying the token:', error.message, error.stack);
+    return null;
+  }
+}

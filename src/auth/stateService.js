@@ -27,6 +27,6 @@ export async function storeState(state) {
   } catch (error) {
 
     // Log any errors that occur during storage
-    log.debug('Erreur lors du stockage de l\'état:', error.message, error.stack);
+    log.debug('Error storing state:', error.message, error.stack);
   }
 }

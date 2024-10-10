@@ -28,4 +28,39 @@ export async function storeToken(token) {
     log.error('Error storing token:', error.message, error.stack);
     return null;
   }
-}
+};
+
+
+/**
+ * Retrieves the stored access token.
+ * 
+ * @async
+ * @function getToken
+ * @returns {Promise<string|null>} - Returns the stored token if found, or null if no token is found.
+ * @description This function retrieves the access token from SecureStore. 
+ * It logs the result or warns if no token is found. If an error occurs, it logs the error and returns null.
+ */
+
+export async function getToken() {
+  try {
+    // Retrieve the token from SecureStore using TOKEN_KEY.
+    const token = await SecureStore.getItemAsync(TOKEN_KEY);
+    if (token) {
+      // Log success message 
+      log.info('Token retrieved successfully:', storedState);
+
+      // return stored token
+      return token;
+
+    } else {
+       // If token is not found, log a warning
+       log.warn('No token found in SecureStore.');
+      return null;
+    }
+
+  } catch (error) {
+    // Log error if something goes wrong during retrieval
+    log.error('Error while retrieving token:', error.message, error.stack);
+    return null;
+  }
+};

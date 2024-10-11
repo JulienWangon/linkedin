@@ -1,10 +1,14 @@
 import React from "react";
+import { enableScreens } from 'react-native-screens'; // Import enableScreens
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@reduxjs/toolkit";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LinkedinLoginScreen from "./src/screens/LinkedinLoginScreen";
-import { Home } from "./src/screens/Home";
+import Home from "./src/screens/Home";
 
 
+enableScreens();
+// Create a stack navigator.
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (

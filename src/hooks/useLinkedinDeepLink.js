@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import Constants from 'expo-constants';
 import { Linking } from 'react-native';
 import { exchangeCodeForToken } from '../auth/linkedinAuthService';
 import { getStoredState } from '../auth/stateService';
@@ -7,9 +8,9 @@ import { getParamsFromUrl } from '../services/deepLinkService';
 import log from '../utils/logger';
 
 // Retrieving environment variables 
-const clientId = process.env.LINKEDIN_CLIENT_ID;
-const clientSecret = process.env.LINKEDIN_CLIENT_SECRET;
-const redirectUri = process.env.LINKEDIN_REDIRECT_URI;
+const clientId = Constants.expoConfig.extra.LINKEDIN_CLIENT_ID;
+const clientSecret = Constants.expoConfig.extra.LINKEDIN_CLIENT_SECRET;
+const redirectUri = Constants.expoConfig.extra.LINKEDIN_REDIRECT_URI;
 
 
 /**

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Constants from 'expo-constants';
 import { SafeAreaView, ActivityIndicator, StyleSheet } from 'react-native';
 import * as AuthSession from 'expo-auth-session';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +9,7 @@ import { generateRandomState } from '../utils/stateGenerator';
 import { getToken } from '../auth/tokenService';
 import useLinkedInDeepLink from '../hooks/useLinkedinDeepLink';
 import  LoginButton  from '../components/LoginButton';
-
+import log from '../utils/logger';
 
 
 /**
@@ -19,7 +20,7 @@ import  LoginButton  from '../components/LoginButton';
  * @returns {JSX.Element} The LinkedIn login screen with a button.
  */
 
-const LinkedinLoginScreen = () => {
+const LinkedinLoginScreen  = () => {
   // Get navigation object to handle redirection.
   const navigation = useNavigation();
   // Generate a random state for security (CSRF protection).

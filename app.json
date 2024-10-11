@@ -15,7 +15,8 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.julioproject.linkedinlogin"
     },
     "extra": {
       "eas": {

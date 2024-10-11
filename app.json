@@ -2,6 +2,7 @@
   "expo": {
     "name": "linkedin-login",
     "slug": "linkedin-login",
+    "scheme": "loginapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -15,7 +16,19 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.julioproject.linkedinlogin"
+    },
+    "extra": {
+      "LINKEDIN_CLIENT_ID": "78zm2d8yb3qslq",
+      "LINKEDIN_CLIENT_SECRET": "4nsFpykDoDVYl2Tk",
+      "LINKEDIN_REDIRECT_URI": "https://j-webflow.com/callback.php",
+      "eas": {
+        "projectId": "39a22d9c-7f52-493f-a674-d43aae398a2d"
       }
-    } 
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

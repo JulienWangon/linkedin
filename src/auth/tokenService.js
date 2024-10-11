@@ -47,7 +47,7 @@ export async function getToken() {
     const token = await SecureStore.getItemAsync(TOKEN_KEY);
     if (token) {
       // Log success message 
-      log.info('Token retrieved successfully:', storedState);
+      log.info('Token retrieved successfully:', token);
 
       // return stored token
       return token;

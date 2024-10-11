@@ -16,7 +16,7 @@ const { width, height } = Dimensions.get('window');
  */
 
 
-export const LoginButton = ({ onPress }) => {
+const LoginButton = ({ onPress }) => {
 
   // Create a ref for the animated scale value.
  const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
+export default LoginButton;

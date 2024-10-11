@@ -1,5 +1,6 @@
 import { storeState } from './stateService';
 import { checkTokenAndRedirect } from './tokenService';
+import { revokeToken } from './linkedinAuthService';
 import log from '../utils/logger';
 
 
@@ -54,3 +55,30 @@ export const handleLogin = async (promptAsync, randomState, navigation) => {
     return null;
   } 
 };
+
+
+/**
+ * Handles the logout process by revoking the LinkedIn token and redirecting the user.
+ * 
+ * @async
+ * @function handleLogout
+ * @param {Object} navigation - React Navigation object for handling navigation.
+ * @description This function revokes the LinkedIn token and redirects the user to the login screen.
+ */
+
+export const handleLogout = async (navigation) => {
+  try {
+    // Revoke the LinkedIn token.
+    await revokeToken();
+    log.info('Token révoqué et supprimé avec succès.');
+
+    // Redirect to the LinkedIn login screen.
+    navigation.navigate('LinkedinLoginScreen');
+    log.info('Redirection vers l\'écran de connexion.');
+
+  } catch (error) {
+    log.error('Erreur lors de la déconnexion:', error.message, error.stack);
+  }
+};
+
+

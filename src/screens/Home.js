@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import UserProfile from '../components/UserProfile';
+import LogoutButton from '../components/LogoutButton';
 import useLinkedInUserInfo from '../hooks/useFetchUserInfo';
 
 
@@ -12,6 +13,7 @@ const Home = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Bienvenue</Text>
+        <LogoutButton/>
       </View>
         {userLoading ? (
           <View style={styles.loaderContainer}>

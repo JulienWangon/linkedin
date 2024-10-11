@@ -1,4 +1,5 @@
 import { storeToken, removeToken, getToken } from "./tokenService";
+import Constants from 'expo-constants';
 import log from '../utils/logger';
 
 
@@ -66,5 +67,53 @@ export async function exchangeCodeForToken(code, clientId, clientSecret, redirec
     // Log the error and return a user-friendly message
     log.error('Error during the token exchange process:', error.message, error.stack);
     return null;
+  }
+}
+
+
+/**
+ * Revokes the LinkedIn access token and removes it from storage.
+ * 
+ * @async
+ * @function revokeToken
+ * @throws {Error} If no token is found or if the revocation fails.
+ * 
+ * @description This function retrieves the stored LinkedIn access token,
+ * sends a revocation request to LinkedIn, and removes the token from local storage if successful.
+ * Logs any errors that occur during the process.
+ */
+
+export async function revokeToken() {
+
+  // Retrieve the stored access token.
+  const token = await getToken();
+  if (!token) throw new Error('Aucun token trouvé.');
+
+
+  const revokeUrl = discovery.revokeEndpoint;
+  try {
+     // Set up the request parameters for revoking the token.
+    const params = new URLSearchParams({
+      token,
+      client_id: Constants.expoConfig.extra.LINKEDIN_CLIENT_ID,
+      client_secret: Constants.expoConfig.extra.LINKEDIN_CLIENT_SECRET,
+    });
+
+    // Send a POST request to revoke the token.
+    const response = await fetch(revokeUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    });
+
+    // If the response is not OK, throw an error.
+    if (!response.ok) throw new Error('Échec de la révocation du token.');
+
+    // Remove the token from local storage.
+    await removeToken();
+
+  } catch (error) {
+    // Log any errors during the token revocation process.
+    log.error('Erreur lors de la révocation du token:', error.message);
   }
 }

@@ -1,6 +1,5 @@
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, Text } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-
 
 /**
  * MapScreen component shows the user's current location on a map.
@@ -15,7 +14,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
  */
 
 export default function MapScreen({ location, isLoading, errorMsg }) {
-
+  
   // Show loading indicator while fetching location
   if (isLoading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
@@ -27,9 +26,9 @@ export default function MapScreen({ location, isLoading, errorMsg }) {
   }
 
   // Display the map with the user's location marked
-  return (
-    <View style={styles.container}>
-      {location ? (
+  if (location) {
+    return (
+      <View style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
           style={styles.map}
@@ -48,11 +47,11 @@ export default function MapScreen({ location, isLoading, errorMsg }) {
             title="Votre localisation"
           />
         </MapView>
-      ) : (
-        <Text>Localisation en cours...</Text>
-      )}
-    </View>
-  );
+      </View>
+    );
+  }
+
+  return null;
 }
 
 const styles = StyleSheet.create({

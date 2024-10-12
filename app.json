@@ -14,10 +14,20 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
-      "package": "com.julioproject.linkedinlogin"
+      "package": "com.julioproject.linkedinlogin",
+      "jsEngine": "jsc",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDcOn6_zsTkw-BjY-cXzqz6ud5F5_nQh9s"
+        }
+      }
     },
     "extra": {
       "LINKEDIN_CLIENT_ID": "78zm2d8yb3qslq",

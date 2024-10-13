@@ -11,7 +11,20 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.julioproject.linkedinlogin", 
+      "supportsTablet": true,
+      "associatedDomains": [
+        "applinks:j-webflow.com"
+      ],
+      "config": {
+        "googleMapsApiKey": "AIzaSyCS0ANM7AgSEMMy8anfYpGXiaNrxVefDUg"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to show your position on the map.",
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
     },
     "android": {
       "permissions": [

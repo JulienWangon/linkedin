@@ -1,29 +1,33 @@
 import { Text, View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import UserProfile from '../components/UserProfile';
+import MapScreen from '../components/MapScreen';
 import LogoutButton from '../components/LogoutButton';
 import useLinkedInUserInfo from '../hooks/useFetchUserInfo';
+import { useLocation } from '../hooks/useLocation';
 
 
 const Home = () => {
 
+  // Fetch the user's current location and loading state from useLocation hook.
+  const { location, isLoading: locationLoading, errorMsg } = useLocation();
+
+  // Fetch the LinkedIn user information and loading state from useLinkedInUserInfo hook.
   const { userInfo, loading: userLoading, error } = useLinkedInUserInfo();
 
   return (
 
-    <View style={styles.container}>
+    <View style={styles.container}> 
+
       <View style={styles.header}>
         <Text style={styles.title}>Bienvenue</Text>
         <LogoutButton/>
       </View>
-        {userLoading ? (
-          <View style={styles.loaderContainer}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>
-        ) : (
-          <ScrollView contentContainerStyle={styles.scrollViewContent}>
-            <UserProfile user={userInfo} />
-          </ScrollView>
-        )}
+
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <UserProfile user={userInfo} loading={userLoading} error={error} />
+        <MapScreen location={location} isLoading={locationLoading} errorMsg={errorMsg} />
+      </ScrollView>
+
     </View>
 
   );

@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { handleLogout } from '../auth/authService';
 
@@ -20,7 +20,7 @@ const LogoutButton = () => {
   return (
     // calls handleLogout when pressed.
     <TouchableOpacity onPress={() => handleLogout(navigation)} style={{ padding: 10, alignSelf: 'flex-end' }}>
-      <Icon name="power-settings-new" size={30} color="#ff0000" />
+      <MaterialIcons name="power-settings-new" size={30} color="#ff0000" />
     </TouchableOpacity>
   );
 };

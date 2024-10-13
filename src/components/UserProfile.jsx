@@ -1,22 +1,29 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
-
+import { View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native';
 
 /**
  * UserProfile component displays the user's profile information.
  * 
  * @component
  * @param {Object} user - The user object containing profile data.
- * @param {string} user.picture - The URL of the user's profile picture.
- * @param {string} user.given_name - The user's given name.
- * @param {string} user.family_name - The user's family name.
- * @param {string} user.email - The user's email address.
+ * @param {boolean} loading - Whether the user information is still loading.
+ * @param {string} error - The error message, if any.
  * @returns {JSX.Element} - A component that displays the user's profile picture, name, and email.
  */
 
-const UserProfile = ({ user }) => {
+const UserProfile = ({ user, loading, error }) => {
+  // Display loading indicator if loading state is true
+  if (loading) {
+    return <ActivityIndicator size="large" color="#0000ff" />;
+  }
+
+  // Display error message if there's an error
+  if (error) {
+    return <Text>Erreur: {error}</Text>;
+  }
+
+  // Display the user profile once loading is complete and there's no error
   if (!user) {
-   
-    return <Text>Chargement des informations utilisateur...</Text>;
+    return <Text>Les informations utilisateur sont indisponibles.</Text>;
   }
 
   return (
